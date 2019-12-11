@@ -1,5 +1,5 @@
 const axios = require("axios");
-const BASE_PATH = "http://localhost:8080";
+const BASE_PATH = "http://campsiteapi.herokuapp.com";
 
 export const dateToString = date => {
   let d = new Date(date),
