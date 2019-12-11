@@ -5,6 +5,7 @@ import {
   Container,
   Row,
   Col,
+  ButtonToolbar,
   Form,
   FormControl,
   Button,
@@ -13,21 +14,12 @@ import {
 } from "react-bootstrap";
 import { api, dateToString } from "./api/api";
 import _ from "lodash";
-import {
-  pulse,
-  flash,
-  bounceInLeft,
-  bounceInRight,
-  fadeInUp,
-  rubberBand
-} from "react-animations";
+import { pulse, rubberBand } from "react-animations";
 import Radium, { StyleRoot } from "radium";
 import "./css/app.css";
-import axios from "axios";
 import DatePicker from "react-datepicker";
-import { Messages } from "./Messages";
 import "react-datepicker/dist/react-datepicker.css";
-import { forEach } from "react-bootstrap/cjs/ElementChildren";
+import { CodebaseLinks } from "./CodebaseLinks";
 const moment = require("moment");
 
 const App = () => {
@@ -179,7 +171,6 @@ const App = () => {
         })
       )
       .catch(data => {
-        debugger;
         data &&
           data.response &&
           setMessage({
@@ -279,20 +270,6 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Campsite booking</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link>
-              RESR-API Code: https://github.com/shubham20yeole/campsite.api
-            </Nav.Link>
-            <Nav.Link>
-              https://github.com/shubham20yeole/campsite.client
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
       <br />
       <br />
 
@@ -307,7 +284,7 @@ const App = () => {
           <AlertMessages />
         </Row>
         <Row>
-          <h2>HTTP: GET Calls:</h2>
+          <h3>Check campsite availability and book...</h3>
         </Row>
         <Row>
           <Col>
@@ -322,21 +299,18 @@ const App = () => {
               <br />
               Dates entered here will be used below to book the campsite.
             </p>
+            <UserForm />
           </Col>
           <Col>
             <div>
               <p>
-                This is just a calendar preview to show campsite availability.{" "}
+                This is just a calendar preview to show campsite availability.
                 <br />
                 <span>(Dates can not be selected here)</span>
               </p>
             </div>
-
             <CampsitgeDatePicker />
           </Col>
-        </Row>
-        <Row>
-          <UserForm />
         </Row>
       </Container>
       <hr />
@@ -368,6 +342,8 @@ const App = () => {
           </Col>
         </Row>
       </Container>
+      <hr />
+      <CodebaseLinks />
     </div>
   );
 };
