@@ -187,6 +187,11 @@ const App = () => {
     const to = endDate;
     const allDates = getDateRange(from, to);
     const bookingDates = momentToString(allDates);
+
+    if (!fullname || !email) {
+      setMessage({ message: "Name and email required", type: "danger" });
+      return;
+    }
     const payLoad = {
       fullname,
       email,
@@ -202,7 +207,8 @@ const App = () => {
         });
       })
       .catch(data => {
-        setMessage({ message: data.response.data.message, type: "danger" });
+        debugger;
+        setMessage({ message: "Something went wrong...", type: "danger" });
       });
   };
   const UserForm = () => {
@@ -303,6 +309,7 @@ const App = () => {
           </Col>
           <Col>
             <div>
+              <h3>Booking availability...</h3>
               <p>
                 This is just a calendar preview to show campsite availability.
                 <br />
